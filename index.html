@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Revolution</title>
+    <style>
+        /* Paleta de Cores */
+        :root {
+            --sand-dollar: #e5ddc8;
+            --teal: #01949a;
+            --navy-blue: #004369;
+            --red: #db1f48;
+        }
+
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--navy-blue);
+            overflow-x: hidden;
+
+            a {
+                color: #fff;
+            }
+
+            /* Header */
+            header {
+                background-color: var(--navy-blue);
+                color: var(--sand-dollar);
+                padding: 1rem;
+                position: absolute;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .header-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            header .logo {
+                display: flex;
+                align-items: center;
+            }
+
+            header .logo svg {
+                fill: var(--teal);
+                margin-right: 0.625rem;
+                width: 2rem;
+                height: 2rem;
+                transition: transform 0.3s ease;
+            }
+
+            header .logo svg:hover {
+                transform: scale(1.1);
+            }
+
+            header .logo span {
+                font-size: 1.25rem;
+                font-weight: bold;
+            }
+
+            header nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--navy-blue);
+                padding: 1rem;
+            }
+
+            header nav.active {
+                display: block;
+            }
+
+            header nav a {
+                display: block;
+                padding: 0.5rem 1rem;
+                color: var(--sand-dollar);
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            header nav a:hover {
+                color: var(--teal);
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            header .menu-toggle {
+                display: block;
+                cursor: pointer;
+                z-index: 1001;
+            }
+
+            header .menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: var(--sand-dollar);
+                margin: 5px 0;
+                transition: all 0.3s ease;
+            }
+
+            /* Hero Section */
+            .hero-section {
+                margin-top: 60px;
+                min-height: calc(100vh - 60px);
+                background-color: var(--sand-dollar);
+                padding: 2rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .hero-content {
+                text-align: center;
+                max-width: 800px;
+                margin-bottom: 2rem;
+            }
+
+            .hero-content h1 {
+                color: var(--navy-blue);
+                font-size: clamp(2rem, 5vw, 3.5rem);
+                margin-bottom: 1rem;
+                line-height: 1.2;
+            }
+
+            .hero-content p {
+                color: var(--teal);
+                font-size: clamp(1rem, 3vw, 1.5rem);
+                margin-bottom: 2rem;
+            }
+
+            .hero-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .hero-buttons button {
+                padding: 0.75rem 1.5rem;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                color: var(--sand-dollar);
+                font-size: 1rem;
+                transition: all 0.3s ease;
+            }
+
+            .hero-buttons button:first-child {
+                background-color: var(--red);
+            }
+
+            .hero-buttons button:last-child {
+                background-color: var(--teal);
+            }
+
+            .hero-buttons button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .hero-image {
+                width: 100%;
+                max-width: 600px;
+            }
+
+            .hero-image img {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Sections General */
+            section {
+                padding: 4rem 1rem;
+            }
+
+            .section-container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            /* About AI Section */
+            .about-ai {
+                background-color: var(--navy-blue);
+                color: var(--sand-dollar);
+            }
+
+            .about-ai .container {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .about-ai .content {
+                flex: 1;
+            }
+
+            .about-ai h2 {
+                font-size: clamp(1.5rem, 4vw, 2.5rem);
+                margin-bottom: 1.5rem;
+            }
+
+            .about-ai .image {
+                flex: 1;
+                text-align: center;
+            }
+
+            .about-ai .image img {
+                max-width: 100%;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            /* Services Section */
+            .our-services {
+                background-color: var(--teal);
+                color: var(--sand-dollar);
+            }
+
+            .services-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                padding: 2rem 0;
+            }
+
+            .service-item {
+                background-color: rgba(255, 255, 255, 0.1);
+                padding: 2rem;
+                border-radius: 10px;
+                transition: transform 0.3s ease;
+            }
+
+            .service-item:hover {
+                transform: translateY(-5px);
+            }
+
+            span {
+                font-size: 200px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: font-size 0.3s ease;
+            }
+
+            span:hover, span:active {
+                font-size: 250px;
+            }
+
+            /* Testimonials Section */
+            .testimonials {
+                background-color: var(--sand-dollar);
+            }
+
+            .testimonial-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                padding: 2rem 0;
+            }
+
+            .testimonial-card {
+                background-color: var(--teal);
+                border-radius: 10px;
+                padding: 2rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }
+
+            .testimonial-card:hover {
+                transform: translateY(-5px);
+            }
+
+            /* Footer */
+            footer {
+                background-color: var(--navy-blue);
+                color: var(--sand-dollar);
+                padding: 3rem 2rem;
+                position: relative;
+            }
+
+            .footer-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1.5rem;
+            }
+
+            /* Media Queries */
+            @media (min-width: 768px) {
+                header .menu-toggle {
+                    display: none;
+                }
+
+                header nav {
+                    position: static;
+                    display: flex;
+                    width: auto;
+                    padding: 0;
+                    transition: all 0.3s ease;
+                }
+
+                header nav a {
+                    display: inline-block;
+                    position: relative;
+                }
+
+                header nav a::after {
+                    content: '';
+                    position: absolute;
+                    width: 0;
+                    height: 2px;
+                    bottom: -5px;
+                    left: 0;
+                    background-color: var(--sand-dollar);
+                    transition: width 0.3s ease;
+                }
+
+                header nav a:hover::after {
+                    width: 100%;
+                }
+
+                .hero-section {
+                    flex-direction: row;
+                    gap: 3rem;
+                    align-items: center;
+                }
+
+                .hero-content {
+                    text-align: left;
+                    flex: 1;
+                }
+
+                .hero-buttons {
+                    justify-content: flex-start;
+                    gap: 1.5rem;
+                }
+
+                .about-ai .container {
+                    flex-direction: row;
+                    align-items: center;
+                }
+            }
+
+            @media (min-width: 1024px) {
+                .hero-section {
+                    padding: 6rem 4rem;
+                    min-height: 80vh;
+                }
+
+                .services-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 3rem;
+                }
+
+                .testimonial-cards {
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 3rem;
+                }
+            }
+
+            @media (max-width: 767px) {
+                header nav.active {
+                    animation: slideDown 0.4s ease-in-out forwards;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                }
+
+                @keyframes slideDown {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-20px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                    d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-5h10v2h-10v-2zm0-4h10v2h-10v-2z" />
+            </svg>
+            <span>IA Revolução</span>
+        </div>
+        <nav>
+            <a href="?">Início</a>
+            <a href="#about">Sobre</a>
+            <a href="#services">Serviços de IA Aplicados</a>
+            <a href="#testimonials">Opnião</a>
+            <a href="#contact">Contato</a>
+        </nav>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <section class="hero-section" id="hero-section">
+        <div class="hero-content">
+            <h1>Transformando o futuro</h1>
+            <p>"Assim, quer vocês comam, bebam ou façam qualquer outra coisa, façam tudo para a glória de Deus.", Coríntios 10:31</p>
+
+            <div class="hero-buttons">
+                <a href="#about"><button>Saiba Mais</button></a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <span>⚙️</span>
+            <!-- <img src="https://placehold.co/400x300" alt="Gráficos futuristas com robôs ou redes neurais"> -->
+        </div>
+    </section>
+
+    <section class="about-ai" id="about">
+        <div class="image">
+            <!-- <img src="https://placehold.co/300x200" alt="Imagem ilustrativa sobre IA"> -->
+            <span>🤖</span>
+        </div>
+        <div class="content">
+            <h2>O que é Inteligência Artificial?</h2>
+            <p>A <strong>Inteligência Artificial (IA)</strong> refere-se à simulação da inteligência humana em máquinas
+                que são programadas para pensar como humanos e imitar suas ações. O termo também pode ser aplicado a
+                qualquer máquina que exiba características associadas a uma mente humana, como aprendizado e resolução
+                de problemas.</p>
+        </div>
+    </section>
+
+    <section class="our-services" id="services">
+        <h2>Serviços de IA Aplicado</h2>
+        <div class="services-grid">
+            <div class="service-item">
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-5h10v2h-10v-2zm0-4h10v2h-10v-2z"/></svg> -->
+                <span>💻</span>
+                <h3>Automação</h3>
+                <p>Automatize processos para aumentar a eficiência e reduzir custos.</p>
+            </div>
+            <div class="service-item">
+                <span>📱</span>
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-5h10v2h-10v-2zm0-4h10v2h-10v-2z"/></svg> -->
+                <h3>Análise de Dados</h3>
+                <p>Analise seus dados para fornecer insights valiosos para o seu objetivo.</p>
+            </div>
+            <div class="service-item">
+                <span>📶</span>
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-5h10v2h-10v-2zm0-4h10v2h-10v-2z"/></svg> -->
+                <h3>Modelagem Preditiva</h3>
+                <p>A ia cria modelos preditivos para antecipar tendências e otimizar decisões.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <h2>O que as pessoas dizem?</h2>
+        <div class="testimonial-cards">
+            <div class="testimonial-card">
+                <p>"A IA revolucionou nossa forma de trabalhar. Resultados incríveis!"</p>
+            </div>
+            <div class="testimonial-card">
+                <p>"Interpretação de texto de alta qualidade e suporte excepcional. Recomendo!"</p>
+            </div>
+            <div class="testimonial-card">
+                <p>"A modelagem preditiva nos ajudou a tomar decisões mais assertivas. Muito satisfeito!"</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <!-- <div class="social-icons">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.46 6c-.77.34-1.6.57-2.46.68.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C17.5 4.49 16.4 4 15.24 4c-2.72 0-4.92 2.2-4.92 4.92 0 .39.04.77.12 1.12-4.09-.2-7.72-2.17-10.15-5.15-.42.72-.66 1.56-.66 2.47 0 1.7 1.02 3.2 2.58 4.08-.71-.02-1.39-.22-1.98-.55v.06c0 2.38 1.69 4.37 3.94 4.82-.41.11-.85.17-1.3.17-.31 0-.61-.03-.91-.08.63 1.96 2.44 3.38 4.6 3.42-1.68 1.32-3.8 2.1-6.1 2.1-.39 0-.77-.02-1.15-.07 2.12 1.36 4.65 2.16 7.3 2.16 8.76 0 13.54-7.24 13.54-13.54 0-.2-.01-.4-.02-.61.93-.67 1.74-1.5 2.38-2.46z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.38-1.12-2.5-2.5-2.5s-2.5 1.12-2.5 2.5 1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5zm-10.5 0c0-1.38-1.12-2.5-2.5-2.5s-2.5 1.12-2.5 2.5 1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5zm-10.5 0c0-1.38-1.12-2.5-2.5-2.5s-2.5 1.12-2.5 2.5 1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5zm10.5 7c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm10.5 0c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm-10.5-7c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm-10.5 0c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm10.5-7c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm10.5 0c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.38-1.12-2.5-2.5-2.5s-2.5 1.12-2.5 2.5 1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5zm-10.5 0c0-1.38-1.12-2.5-2.5-2.5s-2.5 1.12-2.5 2.5 1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5zm-10.5 0c0-1.38-1.12-2.5-2.5-2.5s-2.5 1.12-2.5 2.5 1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5zm10.5 7c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm10.5 0c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm-10.5-7c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm-10.5 0c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm10.5-7c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm10.5 0c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5z"/></svg>
+        </div> -->
+        <p>© 2024 IA Revolução.</p>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+            document.querySelector('header nav').classList.toggle('active');
+        });
+
+        document.querySelectorAll('header nav a').forEach(link => {
+            link.addEventListener('click', function () {
+                document.querySelector('header nav').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
